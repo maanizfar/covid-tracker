@@ -4,6 +4,7 @@ import reducer, {
   RECIEVE_WORLD_HISTORICAL,
   RECIEVE_COUNTRIES_CURRENT,
   RECIEVE_COUNTRIES_HISTORICAL,
+  SET_COUNTRY,
 } from "./DataReducer";
 
 const initialState = {
@@ -11,6 +12,7 @@ const initialState = {
   worldHistoricalData: {},
   countriesCurrentData: [],
   countriesHistoricalData: [],
+  selectedCountry: "all",
 };
 
 export const DataContext = createContext(initialState);
@@ -49,6 +51,14 @@ const DataProvider = ({ children }) => {
     });
   }
 
+  function setCountry(countryName) {
+    console.log("SETCOUNTRY: " + countryName);
+    dispatch({
+      type: SET_COUNTRY,
+      payload: countryName,
+    });
+  }
+
   return (
     <DataContext.Provider
       value={{
@@ -56,10 +66,12 @@ const DataProvider = ({ children }) => {
         worldHistoricalData: state.worldHistoricalData,
         countriesCurrentData: state.countriesCurrentData,
         countriesHistoricalData: state.countriesHistoricalData,
+        selectedCountry: state.selectedCountry,
         recieveCountriesCurrentData,
         recieveCountriesHistoricalData,
         recieveWorldCurrentData,
         recieveWorldHistoricalData,
+        setCountry,
       }}
     >
       {children}
