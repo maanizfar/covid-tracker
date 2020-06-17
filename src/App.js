@@ -3,6 +3,8 @@ import { DataContext } from "./state/DataProvider";
 import Grid from "@material-ui/core/Grid";
 
 import Header from "./components/Header";
+import CountrySelector from "./components/CountrySelector";
+import StatBox from "./components/StatBox";
 
 // import {
 //   getCountriesCurrentData,
@@ -48,11 +50,34 @@ function App() {
       </Grid>
       <Grid item container direction="column" alignItems="stretch">
         <Grid item container>
-          <Grid item xs={8}>
-            Map
+          <Grid item xs={12} md={8}>
+            <CountrySelector />
           </Grid>
-          <Grid item xs={4}>
-            Stats
+          <Grid item xs={12} md={4} container>
+            <Grid item xs={6}>
+              <StatBox type="cases" label="Total Cases" />
+            </Grid>
+            <Grid item xs={6}>
+              <StatBox type="todayCases" label="cases today" />
+            </Grid>
+            <Grid item xs={6}>
+              <StatBox type="deaths" label="Total Deaths" />
+            </Grid>
+            <Grid item xs={6}>
+              <StatBox type="todayDeaths" label="Today's deaths" />
+            </Grid>
+            <Grid item xs={6}>
+              <StatBox type="recovered" label="Total Recovered" />
+            </Grid>
+            <Grid item xs={6}>
+              <StatBox type="todayRecovered" label="Today's Recovered" />
+            </Grid>
+            <Grid item xs={6}>
+              <StatBox type="active" label="Active" />
+            </Grid>
+            <Grid item xs={6} sm={6}>
+              <StatBox type="critical" label="critical" />
+            </Grid>
           </Grid>
         </Grid>
         <Grid item container>

@@ -12,7 +12,7 @@ const initialState = {
   worldHistoricalData: {},
   countriesCurrentData: [],
   countriesHistoricalData: [],
-  selectedCountry: "all",
+  selectedCountry: "All",
 };
 
 export const DataContext = createContext(initialState);
