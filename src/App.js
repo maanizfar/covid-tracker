@@ -1,6 +1,8 @@
 import React, { useEffect, useContext } from "react";
 import { DataContext } from "./state/DataProvider";
+import Grid from "@material-ui/core/Grid";
 
+import Header from "./components/Header";
 // import {
 //   getCountriesCurrentData,
 //   getCountriesHistorialData,
@@ -38,7 +40,31 @@ function App() {
     // eslint-disable-next-line
   }, []);
 
-  return <div>Covid Tracker</div>;
+  return (
+    <Grid container direction="column">
+      <Grid item>
+        <Header />
+      </Grid>
+      <Grid item container direction="column" alignItems="stretch">
+        <Grid item container>
+          <Grid item xs={8}>
+            Map
+          </Grid>
+          <Grid item xs={4}>
+            Stats
+          </Grid>
+        </Grid>
+        <Grid item container>
+          <Grid item xs={8}>
+            History
+          </Grid>
+          <Grid item xs={4}>
+            Charts
+          </Grid>
+        </Grid>
+      </Grid>
+    </Grid>
+  );
 }
 
 export default App;
