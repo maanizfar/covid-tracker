@@ -1,12 +1,12 @@
 import React, { useEffect, useContext } from "react";
 import { DataContext } from "./state/DataProvider";
 
-import {
-  getCountriesCurrentData,
-  getCountriesHistorialData,
-  getWorldCurrentData,
-  getWorldHistorialData,
-} from "./utils/API";
+// import {
+//   getCountriesCurrentData,
+//   getCountriesHistorialData,
+//   getWorldCurrentData,
+//   getWorldHistorialData,
+// } from "./utils/API";
 
 import {
   mockCountriesCurrent,
@@ -24,16 +24,18 @@ function App() {
   } = useContext(DataContext);
 
   useEffect(() => {
-    getCountriesCurrentData((data) => recieveCountriesCurrentData(data));
-    getWorldCurrentData((data) => recieveWorldCurrentData(data));
-    getWorldHistorialData((data) => recieveWorldHistoricalData(data));
-    getCountriesHistorialData((data) => recieveCountriesHistoricalData(data));
+    // getCountriesCurrentData((data) => recieveCountriesCurrentData(data));
+    // getWorldCurrentData((data) => recieveWorldCurrentData(data));
+    // getWorldHistorialData((data) => recieveWorldHistoricalData(data));
+    // getCountriesHistorialData((data) => recieveCountriesHistoricalData(data));
 
     // FOR TESTING
-    // recieveCountriesCurrentData(mockCountriesCurrent);
-    // recieveCountriesHistoricalData(mockCountriesHistorical);
-    // recieveWorldCurrentData(mockWorldCurrent);
-    // recieveWorldHistoricalData(mockWorldHistorical);
+    recieveCountriesCurrentData(mockCountriesCurrent);
+    recieveCountriesHistoricalData(mockCountriesHistorical);
+    recieveWorldCurrentData(mockWorldCurrent);
+    recieveWorldHistoricalData(mockWorldHistorical);
+
+    // eslint-disable-next-line
   }, []);
 
   return <div>Covid Tracker</div>;
