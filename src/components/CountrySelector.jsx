@@ -16,16 +16,25 @@ const useStyles = makeStyles((theme) => ({
 const CountrySelector = () => {
   const classes = useStyles();
 
-  const { selectedCountry, setCountry, countriesCurrentData } = useContext(
-    DataContext
-  );
+  const {
+    selectedCountry,
+    setCountry,
+    countriesCurrentData,
+    countriesHistoricalData,
+  } = useContext(DataContext);
 
   const makeMenuItems = (countriesData) => {
     let data = [{ countryName: "All", flag: "" }];
-    const countries = countriesData.map(({ country, countryInfo }) => ({
-      countryName: country,
-      flag: countryInfo.flag,
-    }));
+    let countries = countriesData.filter(({ country }) =>
+      countriesHistoricalData.map((c) => c.country).includes(country)
+    );
+
+    countries = countries.map(({ country, countryInfo }) => {
+      return {
+        countryName: country,
+        flag: countryInfo.flag,
+      };
+    });
     return data.concat(countries);
   };
 
