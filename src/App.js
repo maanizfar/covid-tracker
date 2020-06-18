@@ -13,6 +13,7 @@ import {
   getWorldCurrentData,
   getWorldHistorialData,
 } from "./utils/API";
+import PieChart from "./components/PieChart";
 
 // import {
 //   mockCountriesCurrent,
@@ -63,7 +64,7 @@ function App() {
             <HistoryChart />
           </Grid>
           <Grid item xs={12} md={4}>
-            Charts
+            <PieChart />
           </Grid>
         </Grid>
       </Grid>

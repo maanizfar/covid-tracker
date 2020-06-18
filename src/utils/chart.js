@@ -74,3 +74,27 @@ export const createChart = (ctx, type, data) => {
     },
   });
 };
+
+export const createPieChart = (ctx, dataset) => {
+  return new Chart(ctx, {
+    type: "pie",
+    responsive: true,
+    maintainAspectRatio: false,
+    data: {
+      labels: ["Deaths", "Confirmed Cases", "Recovered"],
+      datasets: [
+        {
+          backgroundColor: ["red", "blue", "green"],
+          data: dataset,
+        },
+      ],
+    },
+    options: {
+      legend: {
+        position: "top",
+        align: "center",
+        labels: {},
+      },
+    },
+  });
+};
