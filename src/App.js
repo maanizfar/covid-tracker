@@ -4,21 +4,22 @@ import Grid from "@material-ui/core/Grid";
 
 import Header from "./components/Header";
 import CountrySelector from "./components/CountrySelector";
-import StatBox from "./components/StatBox";
-
-// import {
-//   getCountriesCurrentData,
-//   getCountriesHistorialData,
-//   getWorldCurrentData,
-//   getWorldHistorialData,
-// } from "./utils/API";
+import StatsContainer from "./components/StatsContainer";
+import HistoryChart from "./components/HistoryChart";
 
 import {
-  mockCountriesCurrent,
-  mockCountriesHistorical,
-  mockWorldCurrent,
-  mockWorldHistorical,
-} from "./utils/mockData";
+  getCountriesCurrentData,
+  getCountriesHistorialData,
+  getWorldCurrentData,
+  getWorldHistorialData,
+} from "./utils/API";
+
+// import {
+//   mockCountriesCurrent,
+//   mockCountriesHistorical,
+//   mockWorldCurrent,
+//   mockWorldHistorical,
+// } from "./utils/mockData";
 
 function App() {
   const {
@@ -29,16 +30,16 @@ function App() {
   } = useContext(DataContext);
 
   useEffect(() => {
-    // getCountriesCurrentData((data) => recieveCountriesCurrentData(data));
-    // getWorldCurrentData((data) => recieveWorldCurrentData(data));
-    // getWorldHistorialData((data) => recieveWorldHistoricalData(data));
-    // getCountriesHistorialData((data) => recieveCountriesHistoricalData(data));
+    getCountriesCurrentData((data) => recieveCountriesCurrentData(data));
+    getWorldCurrentData((data) => recieveWorldCurrentData(data));
+    getWorldHistorialData((data) => recieveWorldHistoricalData(data));
+    getCountriesHistorialData((data) => recieveCountriesHistoricalData(data));
 
     // FOR TESTING
-    recieveCountriesCurrentData(mockCountriesCurrent);
-    recieveCountriesHistoricalData(mockCountriesHistorical);
-    recieveWorldCurrentData(mockWorldCurrent);
-    recieveWorldHistoricalData(mockWorldHistorical);
+    // recieveCountriesCurrentData(mockCountriesCurrent);
+    // recieveCountriesHistoricalData(mockCountriesHistorical);
+    // recieveWorldCurrentData(mockWorldCurrent);
+    // recieveWorldHistoricalData(mockWorldHistorical);
 
     // eslint-disable-next-line
   }, []);
@@ -54,37 +55,14 @@ function App() {
             <CountrySelector />
           </Grid>
           <Grid item xs={12} md={4} container>
-            <Grid item xs={6}>
-              <StatBox type="cases" label="Total Cases" />
-            </Grid>
-            <Grid item xs={6}>
-              <StatBox type="todayCases" label="cases today" />
-            </Grid>
-            <Grid item xs={6}>
-              <StatBox type="deaths" label="Total Deaths" />
-            </Grid>
-            <Grid item xs={6}>
-              <StatBox type="todayDeaths" label="Today's deaths" />
-            </Grid>
-            <Grid item xs={6}>
-              <StatBox type="recovered" label="Total Recovered" />
-            </Grid>
-            <Grid item xs={6}>
-              <StatBox type="todayRecovered" label="Today's Recovered" />
-            </Grid>
-            <Grid item xs={6}>
-              <StatBox type="active" label="Active" />
-            </Grid>
-            <Grid item xs={6} sm={6}>
-              <StatBox type="critical" label="critical" />
-            </Grid>
+            <StatsContainer />
           </Grid>
         </Grid>
         <Grid item container>
-          <Grid item xs={8}>
-            History
+          <Grid item xs={12} md={8}>
+            <HistoryChart />
           </Grid>
-          <Grid item xs={4}>
+          <Grid item xs={12} md={4}>
             Charts
           </Grid>
         </Grid>
