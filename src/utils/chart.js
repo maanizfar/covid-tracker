@@ -1,7 +1,7 @@
 import Chart from "chart.js";
 
 export const createChart = (ctx, type, data) => {
-  const chart = new Chart(ctx, {
+  return new Chart(ctx, {
     type,
     responsive: true,
     maintainAspectRatio: false,
@@ -59,7 +59,7 @@ export const createChart = (ctx, type, data) => {
           {
             position: "right",
             offset: true,
-            stacked: true,
+            // stacked: true,
             ticks: {
               mirror: true,
               fontColor: "black",
@@ -73,6 +73,4 @@ export const createChart = (ctx, type, data) => {
       },
     },
   });
-
-  return chart;
 };

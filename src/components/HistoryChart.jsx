@@ -1,8 +1,10 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import { DataContext } from "../state/DataProvider";
 import { createChart } from "../utils/chart";
 
 const HistoryChart = () => {
+  const [chart, setChart] = useState(null);
+
   const {
     selectedCountry,
     countriesHistoricalData,
@@ -35,26 +37,30 @@ const HistoryChart = () => {
       return [];
     };
 
-    createChart(document.getElementById("langChart"), "line", [
-      {
-        label: "Deaths",
-        entries: mapToAxesEntries(getData("deaths")),
-        color: "red",
-      },
-      {
-        label: "Recovered",
-        entries: mapToAxesEntries(getData("recovered")),
-        color: "green",
-      },
-      {
-        label: "Cases",
-        entries: mapToAxesEntries(getData("cases")),
-        color: "blue",
-      },
-    ]);
+    if (chart !== null) chart.destroy();
+
+    setChart(
+      createChart(document.getElementById("historyChart"), "line", [
+        {
+          label: "Deaths",
+          entries: mapToAxesEntries(getData("deaths")),
+          color: "red",
+        },
+        {
+          label: "Recovered",
+          entries: mapToAxesEntries(getData("recovered")),
+          color: "green",
+        },
+        {
+          label: "Cases",
+          entries: mapToAxesEntries(getData("cases")),
+          color: "blue",
+        },
+      ])
+    );
   }, [worldHistoricalData, countriesHistoricalData, selectedCountry]);
 
-  return <canvas id="langChart" width="400" height="150"></canvas>;
+  return <canvas id="historyChart" width="400" height="150"></canvas>;
 };
 
 export default HistoryChart;
