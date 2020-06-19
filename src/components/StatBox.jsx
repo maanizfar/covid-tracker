@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
+import Humanize from "humanize-plus";
 
 import { DataContext } from "../state/DataProvider";
 
@@ -38,7 +39,7 @@ const StatBox = ({ type, label }) => {
   return (
     <Box className={classes.box}>
       <Typography align="center" color="textPrimary" variant="h4" noWrap>
-        {statValue}
+        {Humanize.compactInteger(statValue, 1)}
       </Typography>
       <Typography
         align="center"
