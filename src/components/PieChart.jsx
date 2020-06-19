@@ -2,7 +2,6 @@ import React, { useContext, useState, useEffect } from "react";
 
 import { DataContext } from "../state/DataProvider";
 import { createPieChart } from "../utils/chart";
-import Chart from "chart.js";
 
 const PieChart = () => {
   const [chart, setChart] = useState(null);
@@ -25,7 +24,7 @@ const PieChart = () => {
         : (data = country[0]);
     }
 
-    console.log("DATA: ", data);
+    // console.log("DATA: ", data);
 
     const dataset = [];
     dataset.push(data.deaths);
@@ -36,9 +35,10 @@ const PieChart = () => {
 
     const ctx = document.getElementById("pieChart");
     setChart(createPieChart(ctx, dataset));
+    //eslint-disable-next-line
   }, [selectedCountry, countriesCurrentData, worldCurrentData]);
 
-  return <canvas id="pieChart" width="0" height="0"></canvas>;
+  return <canvas id="pieChart" width="100%" height="100%"></canvas>;
 };
 
 export default PieChart;

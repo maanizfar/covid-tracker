@@ -6,6 +6,7 @@ import Header from "./components/Header";
 import CountrySelector from "./components/CountrySelector";
 import StatsContainer from "./components/StatsContainer";
 import HistoryChart from "./components/HistoryChart";
+import Map from "./components/Map";
 
 import {
   getCountriesCurrentData,
@@ -52,18 +53,23 @@ function App() {
       </Grid>
       <Grid item container direction="column" alignItems="stretch">
         <Grid item container>
-          <Grid item xs={12} md={8}>
-            <CountrySelector />
+          <Grid item xs={12} md={9}>
+            <Map />
           </Grid>
-          <Grid item xs={12} md={4} container>
-            <StatsContainer />
+          <Grid item container direction="column" xs={12} md={3} spacing={2}>
+            <Grid item container alignItems="stretch">
+              <CountrySelector />
+            </Grid>
+            <Grid item container>
+              <StatsContainer />
+            </Grid>
           </Grid>
         </Grid>
         <Grid item container>
-          <Grid item xs={12} md={8}>
+          <Grid item xs={12} md={9}>
             <HistoryChart />
           </Grid>
-          <Grid item xs={12} md={4}>
+          <Grid item xs={12} md={3}>
             <PieChart />
           </Grid>
         </Grid>

@@ -11,6 +11,9 @@ const useStyles = makeStyles((theme) => ({
   flag: {
     marginRight: theme.spacing(1),
   },
+  root: {
+    width: "100%",
+  },
 }));
 
 const CountrySelector = () => {
@@ -39,11 +42,12 @@ const CountrySelector = () => {
   };
 
   return (
-    <FormControl>
+    <FormControl className={classes.root}>
       <Select
         value={selectedCountry}
         disabled={countriesCurrentData === []}
         onChange={(e) => setCountry(e.target.value)}
+        fullWidth={true}
       >
         {countriesCurrentData &&
           makeMenuItems(countriesCurrentData).map(({ countryName, flag }) => (

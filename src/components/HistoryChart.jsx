@@ -58,6 +58,7 @@ const HistoryChart = () => {
         },
       ])
     );
+    //eslint-disable-next-line
   }, [worldHistoricalData, countriesHistoricalData, selectedCountry]);
 
   return <canvas id="historyChart" width="400" height="150"></canvas>;
