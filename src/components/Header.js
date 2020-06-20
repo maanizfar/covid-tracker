@@ -5,7 +5,7 @@ import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import { GoMarkGithub } from "react-icons/go";
-import { FaFacebook } from "react-icons/fa";
+// import { FaFacebook } from "react-icons/fa";
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -21,9 +21,9 @@ const Header = () => {
     <AppBar position="static">
       <Toolbar>
         <Typography className={classes.title}>Covid Tracker</Typography>
-        <IconButton>
+        {/* <IconButton>
           <FaFacebook color="white" />
-        </IconButton>
+        </IconButton> */}
         <IconButton>
           <GoMarkGithub color="white" />
         </IconButton>

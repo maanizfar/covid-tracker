@@ -226,7 +226,8 @@ const Map = () => {
     return () => {
       if (mapChart) mapChart.dispose();
     };
-    //eslint-disable-next-line
+
+    // eslint-disable-next-line
   }, [countriesCurrentData]);
 
   return <div id="mapdiv" style={{ width: "100%", height: "100%" }}></div>;

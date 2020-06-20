@@ -43,6 +43,7 @@ const CountrySelector = () => {
 
   return (
     <FormControl className={classes.root}>
+      <FormHelperText>Select Country</FormHelperText>
       <Select
         value={selectedCountry}
         disabled={countriesCurrentData === []}
@@ -64,7 +65,6 @@ const CountrySelector = () => {
             </MenuItem>
           ))}
       </Select>
-      <FormHelperText>Select Country</FormHelperText>
     </FormControl>
   );
 };

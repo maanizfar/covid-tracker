@@ -39,7 +39,7 @@ const StatBox = ({ type, label }) => {
   return (
     <Box className={classes.box}>
       <Typography align="center" color="textPrimary" variant="h4" noWrap>
-        {Humanize.compactInteger(statValue, 1)}
+        {statValue ? Humanize.compactInteger(statValue, 1) : "---"}
       </Typography>
       <Typography
         align="center"

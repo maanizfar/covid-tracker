@@ -21,7 +21,7 @@ const DataProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   function recieveCountriesCurrentData(data) {
-    console.log("RECIEVED COUNTRIES CURRENT: ", data);
+    // console.log("RECIEVED COUNTRIES CURRENT: ", data);
     dispatch({
       type: RECIEVE_COUNTRIES_CURRENT,
       payload: data,
@@ -29,14 +29,14 @@ const DataProvider = ({ children }) => {
   }
 
   function recieveCountriesHistoricalData(data) {
-    console.log("RECIEVED COUNTRIES HISTORICAL:  ", data);
+    // console.log("RECIEVED COUNTRIES HISTORICAL:  ", data);
     dispatch({
       type: RECIEVE_COUNTRIES_HISTORICAL,
       payload: data,
     });
   }
   function recieveWorldCurrentData(data) {
-    console.log("RECIEVED WORLD CURRENT: ", data);
+    // console.log("RECIEVED WORLD CURRENT: ", data);
     dispatch({
       type: RECIEVE_WORLD_CURRENT,
       payload: data,
@@ -44,7 +44,7 @@ const DataProvider = ({ children }) => {
   }
 
   function recieveWorldHistoricalData(data) {
-    console.log("RECIEVED WORLD HISTORICAL:  ", data);
+    // console.log("RECIEVED WORLD HISTORICAL:  ", data);
     dispatch({
       type: RECIEVE_WORLD_HISTORICAL,
       payload: data,
@@ -52,7 +52,7 @@ const DataProvider = ({ children }) => {
   }
 
   function setCountry(countryName) {
-    console.log("SETCOUNTRY: " + countryName);
+    // console.log("SETCOUNTRY: " + countryName);
     dispatch({
       type: SET_COUNTRY,
       payload: countryName,

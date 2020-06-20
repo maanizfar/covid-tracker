@@ -3,7 +3,7 @@ import Chart from "chart.js";
 export const createChart = (ctx, type, data) => {
   return new Chart(ctx, {
     type,
-    responsive: true,
+    responsive: false,
     maintainAspectRatio: false,
     data: {
       datasets: data.map((d) => ({

@@ -38,7 +38,11 @@ const PieChart = () => {
     //eslint-disable-next-line
   }, [selectedCountry, countriesCurrentData, worldCurrentData]);
 
-  return <canvas id="pieChart" width="100%" height="100%"></canvas>;
+  return (
+    <div style={{ padding: 32 }}>
+      <canvas id="pieChart" width="130" height="130"></canvas>
+    </div>
+  );
 };
 
 export default PieChart;
