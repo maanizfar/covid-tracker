@@ -22,46 +22,48 @@ const CountrySelector = () => {
   const {
     selectedCountry,
     setCountry,
-    countriesCurrentData,
-    countriesHistoricalData,
+    currentData,
+    historicalData,
   } = useContext(DataContext);
 
-  const makeMenuItems = (countriesData) => {
-    let data = [{ countryName: "All", flag: "" }];
-    let countries = countriesData.filter(({ country }) =>
-      countriesHistoricalData.map((c) => c.country).includes(country)
-    );
+  // console.log("CurrentData: ", currentData);
+  // console.log("Selected Country", selectedCountry);
 
-    countries = countries.map(({ country, countryInfo }) => {
-      return {
-        countryName: country,
-        flag: countryInfo.flag,
-      };
+  const cleanedMenuItems = () => {
+    return currentData.filter(({ name }) => {
+      if (name === "World") return true;
+      else return historicalData.map((c) => c.name).includes(name);
     });
-    return data.concat(countries);
   };
+
+  function isWorldInCurrentData() {
+    return currentData.filter((c) => c.name === "World").length !== 0;
+  }
+
+  const handleChange = (e) =>
+    setCountry(currentData.filter((c) => c.name === e.target.value)[0]);
 
   return (
     <FormControl className={classes.root}>
       <FormHelperText>Select Country</FormHelperText>
       <Select
-        value={selectedCountry}
-        disabled={countriesCurrentData === []}
-        onChange={(e) => setCountry(e.target.value)}
+        value={isWorldInCurrentData() ? selectedCountry.name : ""}
+        disabled={currentData === []}
+        onChange={handleChange}
         fullWidth={true}
       >
-        {countriesCurrentData &&
-          makeMenuItems(countriesCurrentData).map(({ countryName, flag }) => (
-            <MenuItem key={countryName} value={countryName}>
+        {currentData &&
+          cleanedMenuItems().map(({ name, flag }) => (
+            <MenuItem key={name} value={name}>
               {flag && (
                 <img
                   src={flag}
-                  alt={`flag of ${countryName}`}
+                  alt={`flag of ${name}`}
                   width={24}
                   className={classes.flag}
                 />
               )}
-              {countryName}
+              {name}
             </MenuItem>
           ))}
       </Select>

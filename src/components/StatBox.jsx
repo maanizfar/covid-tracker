@@ -19,27 +19,31 @@ const useStyes = makeStyles((theme) => ({
 
 const StatBox = ({ type, label }) => {
   const classes = useStyes();
-  const {
-    selectedCountry,
-    countriesCurrentData,
-    worldCurrentData,
-  } = useContext(DataContext);
+  const { selectedCountry } = useContext(DataContext);
 
-  let statValue;
-  if (selectedCountry === "All") statValue = worldCurrentData[type];
-  else {
-    const country = countriesCurrentData.filter(
-      (c) => c.country === selectedCountry
+  // console.log("Selected: ", selectedCountry);
+
+  if (selectedCountry === undefined) {
+    return (
+      <Box className={classes.box}>
+        <Typography
+          align="center"
+          color="textPrimary"
+          className={classes.label}
+          noWrap
+        >
+          loading...
+        </Typography>
+      </Box>
     );
-    country.length === 0
-      ? console.error("Country not found in countriesCurrentData")
-      : (statValue = country[0][type]);
   }
+
+  const value = selectedCountry[type];
 
   return (
     <Box className={classes.box}>
       <Typography align="center" color="textPrimary" variant="h4" noWrap>
-        {statValue ? Humanize.compactInteger(statValue, 1) : "---"}
+        {value !== undefined ? Humanize.compactInteger(value, 1) : "---"}
       </Typography>
       <Typography
         align="center"

@@ -5,27 +5,12 @@ import { createChart } from "../utils/chart";
 const HistoryChart = () => {
   const [chart, setChart] = useState(null);
 
-  const {
-    selectedCountry,
-    countriesHistoricalData,
-    worldHistoricalData,
-  } = useContext(DataContext);
+  const { selectedCountry, historicalData } = useContext(DataContext);
 
   useEffect(() => {
-    const getCurrentCountryData = () => {
-      return countriesHistoricalData.filter(
-        (c) => c.country === selectedCountry
-      )[0].timeline;
-    };
-
-    const getData = (type) => {
-      if (selectedCountry === "All") return worldHistoricalData[type];
-      else return getCurrentCountryData()[type];
-    };
-
     const mapToAxesEntries = (data) => {
       const axesEntries = [];
-      if (countriesHistoricalData.length !== 0) {
+      if (data && historicalData.length !== 0) {
         for (let [key, value] of Object.entries(data)) {
           axesEntries.push({
             t: key,
@@ -37,29 +22,43 @@ const HistoryChart = () => {
       return [];
     };
 
+    // console.log("historicalData: ", historicalData);
+
+    const ctx = document.getElementById("historyChart");
+
     if (chart !== null) chart.destroy();
 
-    setChart(
-      createChart(document.getElementById("historyChart"), "line", [
-        {
-          label: "Deaths",
-          entries: mapToAxesEntries(getData("deaths")),
-          color: "red",
-        },
-        {
-          label: "Recovered",
-          entries: mapToAxesEntries(getData("recovered")),
-          color: "green",
-        },
-        {
-          label: "Cases",
-          entries: mapToAxesEntries(getData("cases")),
-          color: "blue",
-        },
-      ])
-    );
+    const country = historicalData.filter((c) => {
+      return c.name === selectedCountry.name;
+    })[0];
+
+    if (country) {
+      const deaths = mapToAxesEntries(country.timeline["deaths"]);
+      const cases = mapToAxesEntries(country.timeline["cases"]);
+      const recovered = mapToAxesEntries(country.timeline["recovered"]);
+
+      setChart(
+        createChart(ctx, "line", [
+          {
+            label: "Deaths",
+            entries: deaths,
+            color: "red",
+          },
+          {
+            label: "Recovered",
+            entries: recovered,
+            color: "green",
+          },
+          {
+            label: "Cases",
+            entries: cases,
+            color: "blue",
+          },
+        ])
+      );
+    }
     //eslint-disable-next-line
-  }, [worldHistoricalData, countriesHistoricalData, selectedCountry]);
+  }, [historicalData, selectedCountry]);
 
   return (
     <div>

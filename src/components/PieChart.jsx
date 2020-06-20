@@ -6,37 +6,24 @@ import { createPieChart } from "../utils/chart";
 const PieChart = () => {
   const [chart, setChart] = useState(null);
 
-  const {
-    selectedCountry,
-    countriesCurrentData,
-    worldCurrentData,
-  } = useContext(DataContext);
+  const { selectedCountry } = useContext(DataContext);
 
   useEffect(() => {
-    let data;
-    if (selectedCountry === "All") data = worldCurrentData;
-    else {
-      const country = countriesCurrentData.filter(
-        (c) => c.country === selectedCountry
-      );
-      country.length === 0
-        ? console.error("Country not found in countriesCurrentData")
-        : (data = country[0]);
-    }
+    let country = selectedCountry;
 
     // console.log("DATA: ", data);
 
     const dataset = [];
-    dataset.push(data.deaths);
-    dataset.push(data.cases);
-    dataset.push(data.recovered);
+    dataset.push(country.deaths);
+    dataset.push(country.cases);
+    dataset.push(country.recovered);
 
     if (chart !== null) chart.destroy();
 
     const ctx = document.getElementById("pieChart");
     setChart(createPieChart(ctx, dataset));
     //eslint-disable-next-line
-  }, [selectedCountry, countriesCurrentData, worldCurrentData]);
+  }, [selectedCountry]);
 
   return (
     <div style={{ padding: 32 }}>

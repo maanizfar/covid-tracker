@@ -12,7 +12,9 @@ const initialState = {
   worldHistoricalData: {},
   countriesCurrentData: [],
   countriesHistoricalData: [],
-  selectedCountry: "All",
+  currentData: [],
+  historicalData: [],
+  selectedCountry: {},
 };
 
 export const DataContext = createContext(initialState);
@@ -51,11 +53,11 @@ const DataProvider = ({ children }) => {
     });
   }
 
-  function setCountry(countryName) {
-    // console.log("SETCOUNTRY: " + countryName);
+  function setCountry(country) {
+    // console.log("SETCOUNTRY: " + country);
     dispatch({
       type: SET_COUNTRY,
-      payload: countryName,
+      payload: country,
     });
   }
 
@@ -63,10 +65,9 @@ const DataProvider = ({ children }) => {
     <DataContext.Provider
       value={{
         worldCurrentData: state.worldCurrentData,
-        worldHistoricalData: state.worldHistoricalData,
-        countriesCurrentData: state.countriesCurrentData,
-        countriesHistoricalData: state.countriesHistoricalData,
         selectedCountry: state.selectedCountry,
+        currentData: state.currentData,
+        historicalData: state.historicalData,
         recieveCountriesCurrentData,
         recieveCountriesHistoricalData,
         recieveWorldCurrentData,

@@ -1,13 +1,13 @@
-import React, { useEffect, useContext, useState } from "react";
+import React, { useEffect, useContext } from "react";
 import { DataContext } from "./state/DataProvider";
 import Grid from "@material-ui/core/Grid";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 import Header from "./components/Header";
 import CountrySelector from "./components/CountrySelector";
 import StatsContainer from "./components/StatsContainer";
 import HistoryChart from "./components/HistoryChart";
-import Map from "./components/Map";
+import PieChart from "./components/PieChart";
+import JVectorMap from "./components/JVectorMap";
 
 import {
   getCountriesCurrentData,
@@ -15,7 +15,6 @@ import {
   getWorldCurrentData,
   getWorldHistorialData,
 } from "./utils/API";
-import PieChart from "./components/PieChart";
 
 // import {
 //   mockCountriesCurrent,
@@ -30,18 +29,21 @@ function App() {
     recieveWorldHistoricalData,
     recieveCountriesCurrentData,
     recieveCountriesHistoricalData,
+    historicalData,
+    selectedCountry,
+    currentData,
   } = useContext(DataContext);
 
-  const [smallScreen, setSmallScreen] = useState(false);
-  let sm = useMediaQuery((theme) => theme.breakpoints.down("sm"));
-
   useEffect(() => {
-    getCountriesCurrentData((data) => recieveCountriesCurrentData(data));
-    getWorldCurrentData((data) => recieveWorldCurrentData(data));
-    getWorldHistorialData((data) => recieveWorldHistoricalData(data));
-    getCountriesHistorialData((data) => recieveCountriesHistoricalData(data));
-
-    setSmallScreen(sm);
+    getCountriesCurrentData((data) => recieveCountriesCurrentData(data)).then(
+      getWorldCurrentData((data) => recieveWorldCurrentData(data)).then(
+        getCountriesHistorialData((data) =>
+          recieveCountriesHistoricalData(data)
+        ).then(
+          getWorldHistorialData((data) => recieveWorldHistoricalData(data))
+        )
+      )
+    );
 
     // FOR TESTING
     // recieveCountriesCurrentData(mockCountriesCurrent);
@@ -50,7 +52,17 @@ function App() {
     // recieveWorldHistoricalData(mockWorldHistorical);
 
     // eslint-disable-next-line
-  }, [sm]);
+  }, []);
+
+  // console.log(selectedCountry, currentData, historicalData);
+
+  if (
+    Object.keys(selectedCountry).length === 0 ||
+    Object.keys(currentData).length < 1 ||
+    Object.keys(historicalData).length < 1
+  ) {
+    return <p style={{ textAlign: "center" }}>Loading...</p>;
+  }
 
   return (
     <Grid container direction="column">
@@ -59,11 +71,10 @@ function App() {
       </Grid>
       <Grid item container direction="column" alignItems="stretch">
         <Grid item container>
-          {!smallScreen && (
-            <Grid item xs={12} md={9}>
-              <Map />
-            </Grid>
-          )}
+          <Grid item xs={12} md={9}>
+            <JVectorMap />
+          </Grid>
+
           <Grid item container direction="column" xs={12} md={3} spacing={2}>
             <Grid item container alignItems="stretch">
               <CountrySelector />
@@ -77,6 +88,7 @@ function App() {
           <Grid item xs={12} md={9}>
             <HistoryChart />
           </Grid>
+
           <Grid item xs={12} md={3}>
             <PieChart />
           </Grid>
