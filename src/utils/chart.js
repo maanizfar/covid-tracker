@@ -3,7 +3,7 @@ import Chart from "chart.js";
 export const createLineChart = (ctx, data) => {
   return new Chart(ctx, {
     type: "line",
-    responsive: false,
+    responsive: true,
     maintainAspectRatio: false,
     data: {
       datasets: data.map((d) => ({
@@ -58,7 +58,7 @@ export const createLineChart = (ctx, data) => {
         yAxes: [
           {
             position: "right",
-            offset: true,
+            // offset: true,
             // stacked: true,
             ticks: {
               mirror: true,

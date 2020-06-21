@@ -62,7 +62,7 @@ const HistoryChart = () => {
 
   return (
     <div>
-      <canvas id="historyChart" height="100px"></canvas>
+      <canvas id="historyChart" height="35%" width="100%"></canvas>
     </div>
   );
 };

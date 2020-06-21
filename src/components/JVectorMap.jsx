@@ -3,8 +3,12 @@ import { VectorMap } from "react-jvectormap";
 import { DataContext } from "../state/DataProvider";
 import Humanize from "humanize-plus";
 
+import useMediaQuery from "@material-ui/core/useMediaQuery";
+
 const JVectorMap = () => {
   const { currentData, setCountry, historicalData } = useContext(DataContext);
+
+  const sm = useMediaQuery((theme) => theme.breakpoints.down("md"));
 
   const handleClick = (e, countryCode) => {
     const country = currentData.filter((c) => c.iso2 === countryCode)[0];
@@ -53,7 +57,7 @@ const JVectorMap = () => {
         zoomAnimate={true}
         containerStyle={{
           width: "100%",
-          height: "460px",
+          height: sm ? "300px" : "460px",
         }}
         onRegionClick={(e, countryCode) => handleClick(e, countryCode)} //gets the country code
         containerClassName="map"
