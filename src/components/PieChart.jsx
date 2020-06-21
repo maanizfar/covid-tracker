@@ -25,13 +25,13 @@ const PieChart = () => {
 
     if (chart !== null) chart.destroy();
     const ctx = document.getElementById("pieChart");
-    setChart(createChart(ctx, "pie", data));
+    setChart(createChart(ctx, checked ? "bar" : "pie", data));
 
     //eslint-disable-next-line
   }, [selectedCountry]);
 
   const toggleChecked = (e) => {
-    console.log("checked: ", e.target.checked);
+    // console.log("checked: ", e.target.checked);
     setChecked(e.target.checked);
 
     if (chart !== null) chart.destroy();
