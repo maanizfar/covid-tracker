@@ -10,6 +10,7 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "animated-number-react": "^0.1.1",
     "chart.js": "^2.9.3",
     "humanize-plus": "^1.8.2",
     "react": "^16.13.1",

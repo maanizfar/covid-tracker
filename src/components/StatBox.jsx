@@ -3,6 +3,7 @@ import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Humanize from "humanize-plus";
+import AnimatedNumber from "animated-number-react";
 
 import { DataContext } from "../state/DataProvider";
 
@@ -43,8 +44,12 @@ const StatBox = ({ type, label }) => {
   return (
     <Box className={classes.box}>
       <Typography align="center" color="textPrimary" variant="h4" noWrap>
-        {value !== undefined ? Humanize.compactInteger(value, 1) : "---"}
+        <AnimatedNumber
+          value={value}
+          formatValue={(value) => Humanize.compactInteger(value)}
+        />
       </Typography>
+
       <Typography
         align="center"
         color="textPrimary"
