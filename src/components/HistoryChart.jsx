@@ -1,6 +1,6 @@
 import React, { useEffect, useContext, useState } from "react";
 import { DataContext } from "../state/DataProvider";
-import { createChart } from "../utils/chart";
+import { createLineChart } from "../utils/chart";
 
 const HistoryChart = () => {
   const [chart, setChart] = useState(null);
@@ -38,7 +38,7 @@ const HistoryChart = () => {
       const recovered = mapToAxesEntries(country.timeline["recovered"]);
 
       setChart(
-        createChart(ctx, "line", [
+        createLineChart(ctx, [
           {
             label: "Deaths",
             entries: deaths,

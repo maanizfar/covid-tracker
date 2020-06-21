@@ -29,7 +29,7 @@ const JVectorMap = () => {
     const { cases, deaths, recovered } = country;
 
     el.html(
-      el.html() +
+      `<strong style='font-size: 1rem;'>${el.html()}</strong>` +
         `<br>Cases: ${Humanize.compactInteger(
           cases
         )}<br>Deaths: ${Humanize.compactInteger(
@@ -66,7 +66,8 @@ const JVectorMap = () => {
             "stroke-opacity": 0.2,
           },
           hover: {
-            "fill-opacity": 0.8,
+            fill: "#2938bc",
+            "fill-opacity": 0.9,
             cursor: "pointer",
           },
           selected: {
@@ -80,8 +81,14 @@ const JVectorMap = () => {
           regions: [
             {
               values: mapData, //this is your data
-              scale: ["#146804", "#ff0000"], //your color game's here
+              scale: ["#edf8b1", "#7fcdbb", "#2c7fb8"],
+              // scale: ["#ffeda0", "#feb24c", "#f03b20"],
               normalizeFunction: "polynomial",
+              legend: {
+                vertical: false,
+                title: "Cases",
+                labelRender: (a) => Humanize.compactInteger(a),
+              },
             },
           ],
         }}

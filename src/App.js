@@ -1,6 +1,7 @@
 import React, { useEffect, useContext } from "react";
 import { DataContext } from "./state/DataProvider";
 import Grid from "@material-ui/core/Grid";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 import Header from "./components/Header";
 import CountrySelector from "./components/CountrySelector";
@@ -15,6 +16,7 @@ import {
   getWorldCurrentData,
   getWorldHistorialData,
 } from "./utils/API";
+import { Typography } from "@material-ui/core";
 
 // import {
 //   mockCountriesCurrent,
@@ -61,7 +63,21 @@ function App() {
     Object.keys(currentData).length < 1 ||
     Object.keys(historicalData).length < 1
   ) {
-    return <p style={{ textAlign: "center" }}>Loading...</p>;
+    return (
+      <div
+        style={{
+          height: "100vh",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <CircularProgress />
+        <br />
+        <Typography variant="subtitle1">Fetching data...</Typography>
+      </div>
+    );
   }
 
   return (
@@ -69,7 +85,13 @@ function App() {
       <Grid item>
         <Header />
       </Grid>
-      <Grid item container direction="column" alignItems="stretch">
+      <Grid
+        item
+        container
+        direction="column"
+        alignItems="stretch"
+        style={{ padding: 16 }}
+      >
         <Grid item container>
           <Grid item xs={12} md={9}>
             <JVectorMap />

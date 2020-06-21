@@ -1,8 +1,8 @@
 import Chart from "chart.js";
 
-export const createChart = (ctx, type, data) => {
+export const createLineChart = (ctx, data) => {
   return new Chart(ctx, {
-    type,
+    type: "line",
     responsive: false,
     maintainAspectRatio: false,
     data: {
@@ -92,7 +92,7 @@ export const createPieChart = (ctx, dataset) => {
     options: {
       legend: {
         position: "top",
-        align: "center",
+        align: "start",
         labels: {},
       },
     },
