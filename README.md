@@ -1,6 +1,6 @@
 # Covid-19 Tracker App
 
-[Project # 2](https://docs.google.com/forms/d/e/1FAIpQLSe73k_rbeFDLdZB_mynUVF8f8AZbcG5MkvCRG_omAZuiMPDGg/viewform) for [Panacloud Bootcamp 2020](https://panacloud.github.io/bootcamp-2020/). It's an covid-19's data tracking web app built with React.
+[Project # 2](https://docs.google.com/forms/d/e/1FAIpQLSe73k_rbeFDLdZB_mynUVF8f8AZbcG5MkvCRG_omAZuiMPDGg/viewform) for [Panacloud Bootcamp 2020](https://panacloud.github.io/bootcamp-2020/). It's a covid-19's data tracking web app built with React.
 
 ![demo](https://raw.githubusercontent.com/maanizfar/covid-tracker/master/public/screenshot.jpeg)
 
