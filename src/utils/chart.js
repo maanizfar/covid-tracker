@@ -75,9 +75,9 @@ export const createLineChart = (ctx, data) => {
   });
 };
 
-export const createPieChart = (ctx, dataset) => {
+export const createChart = (ctx, type, dataset) => {
   return new Chart(ctx, {
-    type: "pie",
+    type: type,
     responsive: true,
     maintainAspectRatio: false,
     data: {
@@ -91,6 +91,7 @@ export const createPieChart = (ctx, dataset) => {
     },
     options: {
       legend: {
+        display: type !== "bar",
         position: "top",
         align: "start",
         labels: {},
