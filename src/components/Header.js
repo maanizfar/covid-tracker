@@ -24,7 +24,10 @@ const Header = () => {
         {/* <IconButton>
           <FaFacebook color="white" />
         </IconButton> */}
-        <IconButton>
+        <IconButton
+          href="https://github.com/maanizfar/covid-tracker"
+          target="_blank"
+        >
           <GoMarkGithub color="white" />
         </IconButton>
       </Toolbar>
